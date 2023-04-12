@@ -1,5 +1,6 @@
 ﻿using intexii.Models;
 using intexii.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
@@ -63,10 +64,18 @@ namespace intexii.Controllers
             return View(x);
         }
 
-        public IActionResult ViewMore(int Id)
+
+
+
+        public IActionResult ViewMore(long Id)
         {
             return View();
         }
+
+
+
+
+
         public IActionResult Index()
         {
             return View();
@@ -76,13 +85,14 @@ namespace intexii.Controllers
         // {
         //     return View();
         // }
-
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpGet]
         public IActionResult AddRecord()
         {
             return View("AddRecord", new Burialmain());
         }
 
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpPost]
         public IActionResult AddRecord(Burialmain mum)
         {

@@ -19,15 +19,15 @@
         <div class="card-text p-1">Description: @b.TextileDescription</div>
         <div class="card-text p-1">Depth: @b.Depth</div>
 
-        <form method="post" asp-page="/ViewMore">
+        @*<form method="post" asp-page="/ViewMore">
 
-            <input type="hidden" asp-for="@b.Id"  name="id"/>
+            <input type="hidden" asp-for="ViewMore" name="Id" value="@b.Id"  id="Id"/>
             <span class="card-text">
                 <button type="submit" class="border border-primary btn-success btn-sm float-end">View More</button>
                 <button type ="submit" class="btn btn-primary btn-sm btn-danger">Remove</button>
             </span>
 
-        </form>
+        </form>*@
 
     </div>
 }
