@@ -1,4 +1,5 @@
 using intexii.Data;
+using intexii.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 var authConnectString = builder.Configuration["ConnectionStrings:AuthLink"];
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(authConnectString));
+
+builder.Services.AddDbContext<ebdbContext>(options =>
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
@@ -25,11 +29,19 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 //     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<IebdbContextRepository, EFebdbContextRepository>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -59,6 +71,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCookiePolicy();
 
 app.UseAuthentication();
 app.UseAuthorization();

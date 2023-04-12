@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Records Page";
+}
+
+@model BurialViewModel
+
+
+<!--services section start -->
+@foreach (var b in Model.BurialViews)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>@b.Id</h4>
+        </div>
+        <div class="card-text p-1">Date: @b.Dateofexcavation</div>
+        <div class="card-text p-1">Norht South: @b.TextileDescription</div>
+        <div class="card-text p-1">East West: @b.TextileDescription</div>
+        <div class="card-text p-1">Sex: @b.TextileDescription</div>
+        <div class="card-text p-1">Description: @b.TextileDescription</div>
+        <div class="card-text p-1">Depth: @b.Depth</div>
+
+        <form method="post" asp-page="/ViewMore">
+
+            <input type="hidden" asp-for="@b.Id"  name="id"/>
+            <span class="card-text">
+                <button type="submit" class="border border-primary btn-success btn-sm float-end">View More</button>
+                <button type ="submit" class="btn btn-primary btn-sm btn-danger">Remove</button>
+            </span>
+
+        </form>
+
+    </div>
+}
+
+<div page-blah="@Model.PageInfo" page-action="BurialRecords"></div>
