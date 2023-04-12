@@ -2,3 +2,45 @@
     ViewData["Title"] = "ViewMore";
 }
 <h1>@ViewData["Title"]</h1>
+
+@model BurialViewModel
+
+<table class="table table-bordered table-striped">
+
+    <thead class="font-weight-bold">
+        <tr>
+            <td>ID</td>
+            <td>Date</td>
+            <td>Desc</td>
+            <td>Squarenorthsouth</td>
+            <td>squareeastwest</td>
+            <td>sex</td>
+            <td>depth</td>
+            <td>burialnumber</td>
+            <td>Estimatedperiod</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var b in Model.SummaryViews)
+            {
+                <tr>
+                    <td>@b.Id</td>
+                    <td>@b.Dateofexcavation</td>
+                    <td>@b.TextileDescription</td>
+                    <td>@b.Squarenorthsouth</td>
+                    <td>@b.Squareeastwest</td>
+                    <td>@b.Sex</td>
+                    <td>@b.Depth</td>
+                    <td>@b.Burialnumber</td>
+                    <td>@b.Estimatedperiod</td>
+
+
+                    @*<td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.applicationID">Edit</a></td>
+                    <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.applicationID">Delete</a></td>*@
+
+                </tr>
+            }
+    </tbody>
+
+</table>

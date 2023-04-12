@@ -23,6 +23,8 @@ namespace intexii.Controllers
 
 
         private IebdbContextRepository repo;
+
+
         public IActionResult BurialRecords(int pageNum = 1)
         {
             int pageSize = 10;
@@ -67,9 +69,31 @@ namespace intexii.Controllers
 
 
 
-        public IActionResult ViewMore(long Id)
+        public IActionResult ViewMore()
         {
-            return View();
+            var y = new BurialViewModel
+            {
+                SummaryViews = (from t in repo.Textiles
+                                join bmt in repo.BurialmainTextiles
+                                on t.Id equals bmt.MainTextileid
+                                join bm in repo.Burialmains
+                                on bmt.MainBurialmainid equals bm.Id
+                                select new SummaryPageModel
+                                {
+                                    Id = bm.Id,
+                                    Dateofexcavation = bm.Dateofexcavation,
+                                    Squarenorthsouth = bm.Squarenorthsouth,
+                                    Squareeastwest = bm.Squareeastwest,
+                                    Depth = bm.Depth,
+                                    Sex = bm.Sex,
+                                    Burialnumber = bm.Burialnumber,
+                                    Estimatedperiod = t.Estimatedperiod,
+                                    TextileDescription = t.Description
+                                })
+                            .OrderBy(b => b.Dateofexcavation)
+                            .ToList()
+            };
+            return View(y);
         }
 
 
@@ -110,6 +134,7 @@ namespace intexii.Controllers
             // }
         }
 
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpGet]
         public IActionResult EditRecord(int id)
         {
@@ -118,6 +143,7 @@ namespace intexii.Controllers
             return View("AddRecord", submission);
         }
 
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpPost]
         public IActionResult EditRecord(Burialmain mum)
         {
@@ -126,6 +152,7 @@ namespace intexii.Controllers
             return RedirectToAction("BurialRecords");
         }
 
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -133,6 +160,7 @@ namespace intexii.Controllers
             return View(submission);
         }
 
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpPost]
         public IActionResult Delete(Burialmain mum)
         {

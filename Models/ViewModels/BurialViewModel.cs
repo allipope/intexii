@@ -9,6 +9,12 @@ namespace intexii.Models.ViewModels
     {
         public IQueryable<Burialmain> Burialmains { get; set; }
         public List<BurialPageModel> BurialViews { get; set; }
+
+
+
+
+
+        public List<SummaryPageModel> SummaryViews { get; set; }
         public PageInfo PageInfo { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 using intexii.Data;
 using intexii.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,7 +53,26 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 10;
     options.Password.RequiredUniqueChars = 1;
+    options.User.RequireUniqueEmail = true;
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz_@.1234567890";
 });
+
+//rename denied and authenticated routes
+// builder.Services.Configure<CookieAuthenticationOptions>(
+//        IdentityConstants.ApplicationScheme,
+//     options => {
+//         options.LoginPath = "/Authenticate";
+//         options.AccessDeniedPath = "/NotAllowed";
+//     });
+
+
+//require users to be authenticated
+// builder.Services.AddAuthorization(options =>
+// {
+//     options.FallbackPolicy = new AuthorizationPolicyBuilder()
+//         .RequireAuthenticatedUser()
+//         .Build();
+// });
 
 var app = builder.Build();
 
