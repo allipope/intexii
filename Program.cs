@@ -24,8 +24,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // Add services to the container.
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//builder.Services.AddDbContext<ebdbContext>(options =>
+//    options.UseNpgsql(connectionString));
+
+//var AuthconnectionString = builder.Configuration.GetConnectionString("AuthConnection");
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlServer(connectionString));
+//    options.UseNpgsql(AuthconnectionString));
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
