@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ML.OnnxRuntime;
 
 var builder = WebApplication.CreateBuilder(args);
 //var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
@@ -78,6 +79,11 @@ builder.Services.Configure<IdentityOptions>(options =>
 //         .Build();
 // });
 
+builder.Services.AddCors();
+builder.Services.AddSingleton<InferenceSession>(
+    new InferenceSession("Data/model.onnx")
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -100,7 +106,7 @@ app.UseCookiePolicy();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

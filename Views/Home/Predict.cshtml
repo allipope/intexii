@@ -1,0 +1,267 @@
+﻿@{
+}
+
+<h1 class="text-center">Predict the Wrapping type of a mummy:</h1>
+<br />
+<div class="text-center border-2 p-2">
+    <form id="myForm">
+        <label for="sqns">Square North South:</label>
+        <input type="number" id="sqns" name="sqns" step="1"><br><br>
+
+        <label for="depth">Depth:</label>
+        <input type="number" id="depth" name="depth" step="0.1"><br><br>
+
+        <label for="sth">South To Head:</label>
+        <input type="number" id="sth" name="sth" step="0.1"><br><br>
+
+        <label for="sqew">Square East West:</label>
+        <input type="number" id="sqew" name="sqew" step="0.1"><br><br>
+
+        <label for="wth">West To Head:</label>
+        <input type="number" id="wth" name="wth" step="0.1"><br><br>
+
+        <label for="wtf">West To Feet:</label>
+        <input type="number" id="wtf" name="wtf" step="0.1"><br><br>
+
+        <label for="stf">South To Feet:</label>
+        <input type="number" id="stf" name="stf" step="0.1"><br><br>
+
+        <label for="ew">East/West:</label>
+        <select id="ew" name="ew">
+            <option value="">--Select an option--</option>
+            <option value="E">East</option>
+            <option value="W">West</option>
+        </select>
+        <br><br>
+
+        <label for="asa">Adult Sub Adult:</label>
+        <select id="asa" name="asa">
+            <option value="">--Select an option--</option>
+            <option value="A">Adult</option>
+            <option value="C">Child</option>
+            <option value="O">Other</option>
+        </select>
+        <br><br>
+
+        <label for="sc">Samples Collected:</label>
+        <select id="sc" name="sc">
+            <option value="">--Select an option--</option>
+            <option value="T">True</option>
+            <option value="F">False</option>
+        </select>
+        <br><br>
+
+        <label for="area">Area:</label>
+        <select id="area" name="area">
+            <option value="">--Select an option--</option>
+            <option value="NW">North West</option>
+            <option value="NE">North East</option>
+            <option value="SE">South East</option>
+            <option value="SW">South West</option>
+            <option value="O">Other</option>
+        </select>
+        <br><br>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+</div>
+
+
+<script>
+
+
+        function submitForm() {
+
+            const myForm = document.getElementById('myForm');
+
+            var sqns = myForm.elements['sqns'].value;
+            var depth = myForm.elements['depth'].value;
+            var sth = myForm.elements['sth'].value;
+            var sqew = myForm.elements['sqew'].value;
+            var wth = myForm.elements['wth'].value;
+            var wtf = myForm.elements['wtf'].value;
+            var stf = myForm.elements['stf'].value;
+            var ew = myForm.elements['ew'].value;
+            var asa = myForm.elements['asa'].value;
+            var sc = myForm.elements['sc'].value;
+            var area = myForm.elements['area'].value;
+
+    /////////////default values if null
+            if (sqns == "") {
+                sqns = 171.4
+            }
+
+            if (depth == "") {
+                depth = 1.17
+            }
+
+            if (sth == "") {
+                sth = 2.44
+            }
+
+            if (sqew == "") {
+                sqew = 22.45
+            }
+
+            if (wth == "") {
+                wth = 2.32
+            }
+
+            if (wtf == "") {
+                wtf = 3.02
+            }
+
+            if (stf == "") {
+                stf = 2.31
+            }
+
+            if (ew == "") {
+                ew = "E"
+            }
+
+            if (asa == "") {
+                asa = "A"
+            }
+
+            if (sc == "") {
+                sc = "T"
+            }
+
+            if (area == "") {
+                area = "SE"
+            }
+    ///////////////////////////
+    //////////values if chosen
+            //EastWest
+            if (ew == "E") {
+                ew_w = 0
+            }
+            else if (ew == "W") {
+                ew_w = 1
+            }
+
+            //AdultSubAdult
+            if (asa == "A") {
+                asa_c = 0
+                asa_o = 0
+            }
+            else if (asa == "C") {
+                asa_c = 1
+                asa_o = 0
+            }
+            else if (asa == "O") {
+                asa_c = 0
+                asa_o = 1
+            }
+
+            //SamplesCollected
+            if (sc == "T") {
+                sc_f = 0
+                sc_t = 1
+            }
+            else if (sc == "F") {
+                sc_f = 1
+                sc_t = 0
+            }
+
+            //Area
+            if (area == "SE") {
+                a_nw = 0
+                a_o = 0
+                a_se = 1
+                a_sw = 0
+            }
+            else if (area == "NE") {
+                a_nw = 0
+                a_o = 0
+                a_se = 0
+                a_sw = 0
+            }
+            else if (area == "NW") {
+                a_nw = 1
+                a_o = 0
+                a_se = 0
+                a_sw = 0
+            }
+            else if (area == "SW") {
+                a_nw = 0
+                a_o = 0
+                a_se = 0
+                a_sw = 1
+            }
+            else if (area == "O") {
+                a_nw = 0
+                a_o = 1
+                a_se =
+                a_sw = 0
+            }
+
+
+            CallAPI(sqns, depth, sth, sqew, wth, wtf, stf, ew_w, asa_c, asa_o, sc_f, sc_t, a_nw, a_o, a_se, a_sw)
+
+        }
+
+
+        async function CallAPI(sqns, depth, sth, sqew, wth, wtf, stf, ew_w, asa_c, asa_o, sc_f, sc_t, a_nw, a_o, a_se, a_sw) {
+
+            // create a JSON object
+            var json = {
+                id: 19140298416325990,
+                squarenorthsouth: sqns,
+                depth: depth,
+                southtohead: sth,
+                squareeastwest: sqew,
+                westtohead: wth,
+                westtofeet: wtf,
+                southtofeet: stf,
+                eastwest_W: ew_w,
+                adultsubadult_C: asa_c,
+                adultsubadult_Other: asa_o,
+                samplescollected_false: sc_f,
+                samplescollected_true: sc_t,
+                area_NW: a_nw,
+                area_Other: a_o,
+                area_SE: a_se,
+                area_SW: a_sw
+            };
+
+
+            console.log(json);
+
+            // serialize the JSON object to a string
+            var jsonString = JSON.stringify(json);
+
+            try {
+                // send the POST request to the URL
+                const response = await fetch("https://localhost:7221/score", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: jsonString
+                });
+
+                // get the response content as a string
+                var responseString = await response.text();
+
+                // do something with the response
+                console.log(responseString);
+
+                let trimmedString = responseString.substring(19, responseString.length - 2);
+                //console.log(trimmedString);
+
+                document.getElementById("response").innerHTML = trimmedString
+            } catch (error) {
+                // handle the exception
+                console.error(error);
+            }
+        }
+
+
+
+</script>
+
+
+<div class="text-center">
+    <h1 id="response"></h1>
+</div>

@@ -120,6 +120,11 @@ namespace intexii.Controllers
             return View();
         }
 
+        public IActionResult Predict()
+        {
+            return View();
+        }
+
         // public IActionResult Privacy()
         // {
         //     return View();

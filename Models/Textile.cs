@@ -6,7 +6,7 @@ namespace intexii.Models
     public partial class Textile
     {
         public long Id { get; set; }
-        public string Locale { get; set; }
+        public string? Locale { get; set; }
         public int? Textileid { get; set; }
         public string? Description { get; set; }
         public string? Burialnumber { get; set; }
