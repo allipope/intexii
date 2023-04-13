@@ -5,17 +5,53 @@
 @using Microsoft.AspNetCore.Authorization
 @using System.ComponentModel.DataAnnotations
 @attribute [Authorize(Roles = "Admin,Researcher")]
-
 <!-- Background image -->
-<div class="bg-image d-flex justify-content-center align-items-center">
-    <img class="img-fluid" src="images/safari.png">
-  <h1 class="text-white">Tomb</h1>
+
+<div class="position-relative pb-5">
+    <img src="images/safari.png" class="img-fluid rounded" alt="Safari Image">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <h1 class="diplay-4 text-white text-center" style="font-size: 150px;">Tomb</h1>
+        <h3 class="text-white text-center">A Burial Analytics and Database Solution</h3>
+    </div>
 </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row row-cols-3 g-3">
+    <div class="col">
+        <div class="card">
+            <img src="images/desert.jpg" alt="desert image" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">Explore Burial Records</h5>
+                <p class="card-text">
+                    Take a deep dive into publicly accessible information from BYU's Egyptology Department
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="images/study.jpg" alt="study" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">Become a Researcher</h5>
+                <p class="card-text">
+                    Contact a member of the Egyptology team to become a researcher for access to more data
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="images/mask.jpg" class="card-img-top"
+                 alt="Los Angeles Skyscrapers" />
+            <div class="card-body">
+                <h5 class="card-title">Support the Cause</h5>
+                <p class="card-text">
+                    Donate to BYU to fund incredible research projects such as Tomb
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <!-- <AuthorizeView Roles="Admin,Researcher">
     <Authorized>

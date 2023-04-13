@@ -16,5 +16,13 @@ namespace intexii.Models.ViewModels
         public string Depth {get; set;}
         public string? Burialnumber { get; set; }
         public string? Estimatedperiod { get; set; }
+        
+
+        public string? Locale { get; set; }
+        public string? Wrapping { get; set; }
+        public string? Adultsubadult { get; set; }
+        public string? Text { get; set; }
+        public string? Haircolor { get; set; }
+
     }
 }

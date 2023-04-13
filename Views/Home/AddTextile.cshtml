@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Record";
+}
+
+@model intexii.Models.Burialmain
+
+<form method="post" style="margin:30px">
+
+    <div asp-validation-summary="All"></div>
+
+    <input asp-for="Id" hidden />
+    <div class="form-group">
+        <label asp-for="Locale">Locale:</label>
+        <input asp-for="Locale" placeholder="Enter Locale"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Textileid">Textile ID:</label>
+        <input asp-for="Textileid"placeholder="Enter Textile ID"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Description">Description:</label>
+        <input asp-for="Description"placeholder="Enter Description"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Burialid">Burial ID:</label>
+        <input asp-for="Burialid"placeholder="Enter Burial ID"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Estimatedperiod">Estimated Period:</label>
+        <input asp-for="Estimatedperiod"placeholder="Enter the Estimated"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Sampledate">Sample Date:</label>
+        <input asp-for="Sampledate" placeholder="Enter the Sample Date"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Photographeddate">Photographed Date:</label>
+        <input asp-for="Photographeddate" placeholder="Enter the Photographed Date"/>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label asp-for="Direction">Direction:</label>
+        <input asp-for="Direction" placeholder="Enter the Direction"/>
+    </div>
+    <br /><br />
+    <button class="button button-primary" type="submit">Publish Record</button>
+</form>
+

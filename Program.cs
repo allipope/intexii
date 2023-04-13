@@ -23,9 +23,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 // Add services to the container.
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ebdbContext>(options =>
-//    options.UseNpgsql(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ebdbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 //var AuthconnectionString = builder.Configuration.GetConnectionString("AuthConnection");
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>

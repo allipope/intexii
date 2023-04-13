@@ -48,6 +48,7 @@ namespace intexii.Controllers
                                    Squareeastwest = bm.Squareeastwest,
                                    Depth = bm.Depth,
                                    Sex = bm.Sex,
+                                   Locale = t.Locale,
 
 
                                    TextileDescription = t.Description
@@ -69,7 +70,7 @@ namespace intexii.Controllers
 
 
 
-        public IActionResult ViewMore()
+        public IActionResult ViewMore(long Id)
         {
             var y = new BurialViewModel
             {
@@ -78,9 +79,10 @@ namespace intexii.Controllers
                                 on t.Id equals bmt.MainTextileid
                                 join bm in repo.Burialmains
                                 on bmt.MainBurialmainid equals bm.Id
+                                where bm.Id == Id
                                 select new SummaryPageModel
                                 {
-                                    Id = bm.Id,
+                                    Locale = t.Locale,
                                     Dateofexcavation = bm.Dateofexcavation,
                                     Squarenorthsouth = bm.Squarenorthsouth,
                                     Squareeastwest = bm.Squareeastwest,
@@ -88,10 +90,20 @@ namespace intexii.Controllers
                                     Sex = bm.Sex,
                                     Burialnumber = bm.Burialnumber,
                                     Estimatedperiod = t.Estimatedperiod,
-                                    TextileDescription = t.Description
+                                    TextileDescription = t.Description,
+                                    Wrapping = bm.Wrapping,
+                                    Adultsubadult = bm.Adultsubadult,
+                                    Text = bm.Text,
+                                    Haircolor = bm.Haircolor
+
                                 })
-                            .OrderBy(b => b.Dateofexcavation)
-                            .ToList()
+                            .ToList(),
+
+                identification = (from bm in repo.Burialmains where bm.Id == Id
+                                  select new SummaryPageModel
+                                  {
+                                    Id = bm.Id
+                                  }).ToList()
             };
             return View(y);
         }
@@ -121,21 +133,30 @@ namespace intexii.Controllers
 
         [Authorize(Roles = "Admin,Researcher")]
         [HttpPost]
-        public IActionResult AddRecord(Burialmain mum)
-        {
-            // if (ModelState.IsValid)
-            // {
-                ebdbContext.Add(mum);
-                ebdbContext.SaveChanges();
-                return View("RecordConfirmation", mum);
-            // }
+        //public IActionResult AddRecord(Burialmain mum)
+        //{
+        //        ebdbContext.Add(mum);
+        //        ebdbContext.SaveChanges();
+        //        // return View("RecordConfirmation", mum);
+        //        return View("BurialConfirmation", mum);
+        //}
 
-            // else
-            // {
-            //     ViewBag.burialmain = MummyContext.burialmain.ToList();
-            //     return View();
-            // }
+        [Authorize(Roles = "Admin,Researcher")]
+        [HttpGet]
+        public IActionResult AddTextile()
+        {
+            return View("AddTextile", new Textile());
         }
+
+        [Authorize(Roles = "Admin,Researcher")]
+        [HttpPost]
+        public IActionResult AddTextile(Textile tex)
+        {
+            ebdbContext.Add(tex);
+            ebdbContext.SaveChanges();
+            return View("TextileConfirmation");;
+        }
+
 
         [Authorize(Roles = "Admin,Researcher")]
         [HttpGet]
