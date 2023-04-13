@@ -96,8 +96,11 @@ namespace intexii.Controllers
             return View(y);
         }
 
-
-
+        [Authorize(Roles = "Admin")]
+        public IActionResult Admin()
+        {
+            return View();
+        }
 
 
         public IActionResult Index()

@@ -102,4 +102,40 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+app.Use(async (context, next) =>
+    {
+        context.Response.Headers.Add("X-Xss-Protection", "1");
+        context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+        context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+        context.Response.Headers.Add("Referrer-Policy", "no-referrer");
+        context.Response.Headers.Add("Feature-Policy", 
+        "vibrate 'self' ; " +
+        "camera 'self' ; " +
+        "microphone 'self' ; " +
+        "speaker 'self' https://youtube.com https://www.youtube.com ;" +
+        "geolocation 'self' ; " +
+        "gyroscope 'self' ; " +
+        "magnetometer 'self' ; " +
+        "midi 'self' ; " +
+        "sync-xhr 'self' ; " +
+        "push 'self' ; " +
+        "notifications 'self' ; " +
+        "fullscreen '*' ; " +
+        "payment 'self' ; " );
+
+        context.Response.Headers.Add(  
+        "Content-Security-Policy-Report-Only",  
+        "default-src 'self'; " +
+        "script-src-elem 'self'" +  
+        "style-src-elem 'self'; " +  
+        "img-src 'self'; http://www.w3.org/" +
+        "font-src 'self'" +
+        "media-src 'self'" +
+        "frame-src 'self'" +
+        "connect-src "
+
+        );  
+        await next();  
+    });
+
 app.Run();
