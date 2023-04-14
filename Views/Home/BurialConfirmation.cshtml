@@ -9,15 +9,20 @@
 
 
 <div class="container text-center">
-    <h2>Your Burial Record has been saved</h2>
-    <h6>Would you like to attach body analysis data to this record?</h6>
+    <h2>Burial record recorded</h2>
+</div>
     <form style="margin:30px">
-        <label>Burial Record:</label>
-        <input readonly value="@ViewBag.Values.Bid" />
-        <label>Body Analysis Record:</label>
-        <input readonly value="@ViewBag.Values.Tid" />
+        <div class="form-group">
+            <label>Burial Record:</label>
+            <input class="form-control" readonly value="@ViewBag.Values.Bid" />
+        </div>
+        <div class="form-group">
+            <label>Body Analysis Record:</label>
+            <input class="form-control" readonly value="@ViewBag.Values.Tid" />
+        </div>
     </form>
 
+<div class="text-center">
     <form method="post" style="margin:30px">
         <div class="form-group">
             <input asp-for="MainBurialmainid" value="@ViewBag.Values.Bid" hidden />
@@ -29,6 +34,4 @@
         @*<button class="btn btn-danger" type="submit">No</button>*@
         <button class="btn btn-success" asp-controller="Home" asp-action="Index">Return Home</button>
     </form>
-    <br />
-
 </div>

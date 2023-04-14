@@ -11,50 +11,50 @@
 
     <div asp-validation-summary="All"></div>
     <div class="form-group">
-        <label asp-for="Id">ID:</label>
+        <label asp-for="Id">ID</label>
         <input asp-for="Id" value="@ViewBag.Tid" readonly />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Locale">Locale:</label>
-        <input asp-for="Locale" placeholder="Enter Locale" />
+        <label asp-for="Locale">Locale</label>
+        <input asp-for="Locale" placeholder="Enter Locale" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Textileid">Textile ID:</label>
-        <input asp-for="Textileid" placeholder="Enter Textile ID" />
+        <label asp-for="Textileid">Textile ID</label>
+        <input asp-for="Textileid" placeholder="Enter Textile ID" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Description">Description:</label>
-        <input asp-for="Description" placeholder="Enter Description" />
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" placeholder="Enter Description" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Burialnumber">Burial Number:</label>
-        <input asp-for="Burialnumber" placeholder="Enter Burial Number" />
+        <label asp-for="Burialnumber">Burial Number</label>
+        <input asp-for="Burialnumber" placeholder="Enter Burial Number" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Estimatedperiod">Estimated Period:</label>
-        <input asp-for="Estimatedperiod" placeholder="Enter the Estimated" />
+        <label asp-for="Estimatedperiod">Estimated Period</label>
+        <input asp-for="Estimatedperiod" placeholder="Enter the Estimated" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Sampledate">Sample Date:</label>
-        <input asp-for="Sampledate" placeholder="Enter the Sample Date" />
+        <label asp-for="Sampledate">Sample Date</label>
+        <input asp-for="Sampledate" placeholder="Enter the Sample Date" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Photographeddate">Photographed Date:</label>
-        <input asp-for="Photographeddate" placeholder="Enter the Photographed Date" />
+        <label asp-for="Photographeddate">Photographed Date</label>
+        <input asp-for="Photographeddate" placeholder="Enter the Photographed Date" class="form-control" />
     </div>
     <br />
     <div class="form-group">
-        <label asp-for="Direction">Direction:</label>
-        <input asp-for="Direction" placeholder="Enter the Direction" />
+        <label asp-for="Direction">Direction</label>
+        <input asp-for="Direction" placeholder="Enter the Direction" class="form-control" />
     </div>
     <br />
     <button class="btn btn-primary" type="submit">Attach Textile</button>
-    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Return Home</button>
+    <button class="btn btn-primary" type="submit">Skip</button>
 </form>

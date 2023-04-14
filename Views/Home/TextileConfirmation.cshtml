@@ -9,15 +9,19 @@
 
 
 <div class="container text-center">
-    <h2>Your Textile Record has been saved</h2>
-    <h3>Would you like to attach a new analysis to this record?</h3>
+    <h2>Textile record successfully attached</h2>
+</div>
     <form style="margin:30px">
-        <label>Textile Record:</label>
-        <input readonly value="@ViewBag.Values.Tid" />
-        <label>Color Record:</label>
-        <input readonly value="@ViewBag.Values.Aid" />
+        <div class="form-group">
+            <label>Textile Record</label>
+            <input readonly value="@ViewBag.Values.Tid" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Analysis Record</label>
+            <input readonly value="@ViewBag.Values.Aid" class="form-control"/>
+        </div>
     </form>
-
+<div class="text-center">
     <form method="post" style="margin:30px">
         <div class="form-group">
             <input asp-for="MainTextileid" value="@ViewBag.Values.Tid" hidden />
@@ -25,9 +29,8 @@
         <div class="form-group">
             <input asp-for="MainAnalysisid" value="@ViewBag.Values.Aid" hidden />
         </div>
-        <button class="btn btn-primary" type="submit">Attach New Analysis</button>
-        <button class="btn btn-danger" type="submit">Don't Add</button>
+        <button class="btn btn-primary" type="submit">Attach Textile Analysis</button>
+        <button class="btn btn-danger" type="submit">Skip</button>
     </form>
     <br />
-
 </div>

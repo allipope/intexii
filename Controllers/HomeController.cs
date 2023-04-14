@@ -778,6 +778,11 @@ namespace intexii.Controllers
         public IActionResult DeleteBurial(long id)
         {
             var submission = ebdbContext.Burialmains.Single(x => x.Id == id);
+
+            //var tid = ebdbContext.BurialmainTextiles.Single(x => x.MainBurialmainid == submission.Id);
+
+            //ViewBag.Tid = tid;
+
             return View(submission);
         }
 
