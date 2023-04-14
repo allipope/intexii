@@ -41,8 +41,18 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
+//services.Configure<CookiePolicyOptions>(options =>
+//{
+//    // This lambda determines whether user consent for non-essential
+//    // cookies is needed for a given request.
+//    options.CheckConsentNeeded = context => true;
+//    // requires using Microsoft.AspNetCore.Http;
+//    options.MinimumSameSitePolicy = SameSiteMode.None;
+//    options.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
+//});
 //builder.Services.AddHsts(options =>
 //{
 //    options.IncludeSubDomains = true;
