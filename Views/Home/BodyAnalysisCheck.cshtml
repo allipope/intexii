@@ -1,16 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "Burial Confirmation";
+﻿@{
+    ViewData["Title"] = "Body Analysis Check";
 }
 
 @model intexii.Models.BurialmainBodyanalysischart;
 
 
 <div class="container text-center">
-    <h2>Your Burial Record has been saved</h2>
-    <h6>Would you like to attach body analysis data to this record?</h6>
+    <h2>You are creating a Body Analysis record for this burial</h2>
+    <h3>Do you want to continue?</h3>
     <form style="margin:30px">
         <label>Burial Record:</label>
         <input readonly value="@ViewBag.Values.Bid" />
@@ -26,7 +23,6 @@
             <input asp-for="MainBodyanalysischartid" value="@ViewBag.Values.Tid" hidden />
         </div>
         <button class="btn btn-primary" type="submit">Attach Body Analysis Data</button>
-        @*<button class="btn btn-danger" type="submit">No</button>*@
         <button class="btn btn-success" asp-controller="Home" asp-action="Index">Return Home</button>
     </form>
     <br />

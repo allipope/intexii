@@ -1,24 +1,31 @@
 ﻿@{
     ViewData["Title"] = "ViewMore";
 }
-<h1>@ViewData["Title"]</h1>
 
 @model BurialViewModel
+
+<h1>Record Information</h1>
+<br />
 
 <table class="table table-bordered table-striped">
 
     <thead class="font-weight-bold">
         <tr>
             <td>Location</td>
-            <td>Description</td>
-            <td>Squarenorthsouth</td>
-            <td>squareeastwest</td>
-            <td>sex</td>
-            <td>depth</td>
-            <td>burialnumber</td>
+            <td>Square North South</td>
+            <td>Square East West</td>
+            <td>Sex</td>
+            <td>Depth</td>
+            <td>Burial Number</td>
             <td>Wrapping</td>
             <td>Adult/Subadult</td>
-            <td>HairColor</td>
+            <td>Hair Color</td>
+            <td>Age at Death</td>
+            <td>Textile Color</td>
+            <td>Textile Structure</td>
+            <td>Head Direction</td>
+            <td>Description</td>
+            <td></td>
 
         </tr>
     </thead>
@@ -28,7 +35,7 @@
             {
                 <tr>
                     <td>@b.Locale</td>
-                    <td>@b.TextileDescription</td>
+
                     <td>@b.Squarenorthsouth</td>
                     <td>@b.Squareeastwest</td>
                     <td>@b.Sex</td>
@@ -37,10 +44,14 @@
                     <td>@b.Wrapping</td>
                     <td>@b.Adultsubadult</td>
                     <td>@b.Haircolor</td>
+                    <td>@b.AgeatDeath</td>
+                    <td>@b.Color</td>
+                    <td>@b.Structure</td>
+                    <td>@b.Headdirection</td>
+                <td>@b.TextileDescription</td>
 
-
-                    @*<td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.applicationID">Edit</a></td>
-                    <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.applicationID">Delete</a></td>*@
+                <td><a class="btn btn-Primary" asp-controller="Home" asp-action="EditRecord" asp-route-id="@b.Id">Edit</a></td>
+                <td><a class ="btn btn-Danger" asp-controller="Home" asp-action="DeleteBurial" asp-route-id="@b.Id">Delete</a></td>
 
                 </tr>
             }

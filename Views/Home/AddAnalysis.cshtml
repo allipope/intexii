@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Analysis";
+}
+
+@model intexii.Models.Analysis
+
+<form method="post" style="margin:30px">
+
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Id">ID:</label>
+        <input asp-for="Id" value="@ViewBag.Aid" readonly />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Analysistype">Analysis Type:</label>
+        <input asp-for="Analysistype" placeholder="Enter Analysis Type" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Doneby">Done By:</label>
+        <input asp-for="Doneby" placeholder="Enter Done By" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Analysisid">Analysis ID:</label>
+        <input asp-for="Analysisid" placeholder="Enter Analysis ID" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Date">Date:</label>
+        <input asp-for="Date" placeholder="Enter Date" />
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Attach Analysis</button>
+    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Return Home</button>
+</form>

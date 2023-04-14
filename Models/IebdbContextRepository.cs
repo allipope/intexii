@@ -7,8 +7,12 @@ namespace intexii.Models
 {
     public interface IebdbContextRepository
     {
-        IQueryable<Burialmain> Burialmains {get;}
+        IQueryable<Burialmain> Burialmains { get; }
         IQueryable<BurialmainTextile> BurialmainTextiles { get; }
         IQueryable<Textile> Textiles { get; }
+        IQueryable<ColorTextile> ColorTextiles { get; }
+        IQueryable<Color> Colors { get; }
+        IQueryable<StructureTextile> StructureTextiles { get; }
+        IQueryable<Structure> Structures { get; }
     }
 }

@@ -7,20 +7,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.ML.OnnxRuntime;
 
 var builder = WebApplication.CreateBuilder(args);
+var env = builder.Environment;
 //var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
-//var connectionStringAuth = builder.Configuration.GetConnectionString("AuthLink");
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseNpgsql(connectionStringAuth));
+var connectionStringAuth = builder.Configuration.GetConnectionString("AuthConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionStringAuth));
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-var authConnectString = builder.Configuration["ConnectionStrings:AuthLink"];
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(authConnectString));
+//var authConnectString = builder.Configuration["ConnectionStrings:AuthLink"];
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseNpgsql(authConnectString));
 
-builder.Services.AddDbContext<ebdbContext>(options =>
-    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+//builder.Services.AddDbContext<ebdbContext>(options =>
+//    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 // Add services to the container.
@@ -41,6 +42,12 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
+
+//builder.Services.AddHsts(options =>
+//{
+//    options.IncludeSubDomains = true;
+//    options.MaxAge = TimeSpan.FromDays(365);
+//});
 
 builder.Services.AddControllersWithViews();
 
@@ -80,9 +87,13 @@ builder.Services.Configure<IdentityOptions>(options =>
 // });
 
 builder.Services.AddCors();
-builder.Services.AddSingleton<InferenceSession>(
-    new InferenceSession("Data/model.onnx")
-);
+//builder.Services.AddSingleton<InferenceSession>(
+//    new InferenceSession("Data/model.onnx")
+//);
+
+builder.Services.AddSingleton(
+      new InferenceSession(Path.Combine(env.ContentRootPath, "Data", "model.onnx"))
+        );
 
 var app = builder.Build();
 

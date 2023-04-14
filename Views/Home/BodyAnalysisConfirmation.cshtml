@@ -2,33 +2,29 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Burial Confirmation";
+    ViewData["Title"] = "Body Analysis Confirmation";
 }
-
-@model intexii.Models.BurialmainBodyanalysischart;
-
+@model BurialmainTextile
 
 <div class="container text-center">
-    <h2>Your Burial Record has been saved</h2>
-    <h6>Would you like to attach body analysis data to this record?</h6>
+    <h2>Your Body Analysis Record has been attached</h2>
+    <h6>Would you like to add a textile to this burial?</h6>
     <form style="margin:30px">
         <label>Burial Record:</label>
         <input readonly value="@ViewBag.Values.Bid" />
-        <label>Body Analysis Record:</label>
+        <label>Textile Record:</label>
         <input readonly value="@ViewBag.Values.Tid" />
     </form>
-
     <form method="post" style="margin:30px">
         <div class="form-group">
             <input asp-for="MainBurialmainid" value="@ViewBag.Values.Bid" hidden />
         </div>
         <div class="form-group">
-            <input asp-for="MainBodyanalysischartid" value="@ViewBag.Values.Tid" hidden />
+            <input asp-for="MainTextileid" value="@ViewBag.Values.Tid" hidden />
         </div>
-        <button class="btn btn-primary" type="submit">Attach Body Analysis Data</button>
-        @*<button class="btn btn-danger" type="submit">No</button>*@
+        <button class="btn btn-primary" type="submit">Attach Textile Record</button>
+        <button class="btn btn-danger" type="submit">No</button>
         <button class="btn btn-success" asp-controller="Home" asp-action="Index">Return Home</button>
     </form>
-    <br />
-
+    @*<a class="btn btn-success" asp-controller="Home" asp-action="Index">Return Home</a>*@
 </div>

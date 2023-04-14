@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Structure Confirmation";
+}
+@model intexii.Models.TextilefunctionTextile;
+
+
+<div class="container text-center">
+    <h2>Your color record has been saved if you added one</h2>
+    <h3>Would you like to attach a new textile function to this textile?</h3>
+    <form style="margin:30px">
+        <label>Textile Record:</label>
+        <input readonly value="@ViewBag.Values.Tid" />
+        <label>Textile Function Record:</label>
+        <input readonly value="@ViewBag.Values.Did" />
+    </form>
+
+    <form method="post" style="margin:30px">
+        <div class="form-group">
+            <input asp-for="MainTextileid" value="@ViewBag.Values.Tid" hidden />
+        </div>
+        <div class="form-group">
+            <input asp-for="MainTextilefunctionid" value="@ViewBag.Values.Did" hidden />
+        </div>
+        <button class="btn btn-primary" type="submit">Attach New Textile Function</button>
+        <button class="btn btn-danger" type="submit">Don't Add</button>
+    </form>
+    <br />
+</div>

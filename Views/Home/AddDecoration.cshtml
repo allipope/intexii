@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Decoration";
+}
+
+@model intexii.Models.Decoration
+
+<form method="post" style="margin:30px">
+
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Id">ID:</label>
+        <input asp-for="Id" value="@ViewBag.Did" readonly />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Decorationid">Decoration ID:</label>
+        <input asp-for="Decorationid" placeholder="Enter Decoration ID" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Value">Value:</label>
+        <input asp-for="Value" placeholder="Enter Value" />
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Attach Decoration</button>
+    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Return Home</button>
+</form>
+
+
+
+
+
+
+
+
+

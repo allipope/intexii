@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Add Body Analysis";
+}
+
+@model intexii.Models.Bodyanalysischart
+
+<form method="post" style="margin:30px">
+
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Id">ID:</label>
+        <input asp-for="Id" value="@ViewBag.Did" readonly />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Femur">Femur:</label>
+        <input asp-for="Femur" placeholder="Femur" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Humerusheaddiameter">Humerus Head Diameter:</label>
+        <input asp-for="Humerusheaddiameter" placeholder="Humerusheaddiameter" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Squamossuture">Squamos Suture:</label>
+        <input asp-for="Squamossuture" placeholder="Squamos Suture" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="CariesPeriodontalDisease">Caries Periodontal Disease:</label>
+        <input asp-for="CariesPeriodontalDisease" placeholder="Caries Periodontal Disease?" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="MedicalIpRamus">Medical Ip Ramus:</label>
+        <input asp-for="MedicalIpRamus" placeholder="Medical Ip Ramus" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Perservationindex">Perservation Index:</label>
+        <input asp-for="Perservationindex" placeholder="Perservation Index" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Gonion">Gonion:</label>
+        <input asp-for="Gonion" placeholder="Gonion" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Humeruslength">Humerus Length:</label>
+        <input asp-for="Humeruslength" placeholder="Humerus Length" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Femurlength">Femur Length:</label>
+        <input asp-for="Femurlength" placeholder="Femur Length" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Lambdoidsuture">Lambdoid Suture:</label>
+        <input asp-for="Lambdoidsuture" placeholder="Lambdoid Suture" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Ventralarc">Ventral Arc:</label>
+        <input asp-for="Ventralarc" placeholder="Ventral Arc" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Tootheruptionageestimation">Tooth Eruption Age Estimation:</label>
+        <input asp-for="Tootheruptionageestimation" placeholder="Tooth Eruption Age Estimation" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Nuchalcrest">Nuchal Crest:</label>
+        <input asp-for="Nuchalcrest" placeholder="Nuchal Crest" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Estimatestature">Estimate Stature:</label>
+        <input asp-for="Estimatestature" placeholder="EstimateStature" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Notes">Notes:</label>
+        <input asp-for="Notes" placeholder="Notes" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Osteophytosis">Osteophytosis:</label>
+        <input asp-for="Osteophytosis" placeholder="Osteophytosis" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Subpubicangle">Subpubic Angle:</label>
+        <input asp-for="Subpubicangle" placeholder="Subpubic Angle" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Robust">Robust:</label>
+        <input asp-for="Robust" placeholder="Robust?" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Femurheaddiameter">Femur Head Diameter:</label>
+        <input asp-for="Femurheaddiameter" placeholder="Femur Head Diameter" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Sciaticnotch">Sciatic Notch:</label>
+        <input asp-for="Sciaticnotch" placeholder="Sciatic Notch" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Supraorbitalridges">Supraorbital Ridges:</label>
+        <input asp-for="Supraorbitalridges" placeholder="Supraorbital Ridges" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Orbitedge">Orbit Edge:</label>
+        <input asp-for="Orbitedge" placeholder="Orbit Edge" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Toothattrition">Tooth Attrition:</label>
+        <input asp-for="Toothattrition" placeholder="Tooth Attrition" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Sphenooccipitalsynchondrosis">Sphenooccipital Synchondrosis:</label>
+        <input asp-for="Sphenooccipitalsynchondrosis" placeholder="Sphenooccipital Synchondrosis" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Parietalblossing">Parietal Blossing:</label>
+        <input asp-for="Parietalblossing" placeholder="Parietal Blossing" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Observations">Observations:</label>
+        <input asp-for="Observations" placeholder="Observations" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Humerus">Humerus:</label>
+        <input asp-for="Humerus" placeholder="Humerus" />
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Attach Body Analysis</button>
+    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Return Home</button>
+</form>
