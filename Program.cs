@@ -8,35 +8,18 @@ using Microsoft.ML.OnnxRuntime;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
-//var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
-var connectionStringAuth = builder.Configuration.GetConnectionString("AuthConnection");
+
+// these lines refer to our connection strings to our databases in postgres that are stored in user-secrets
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionStringAuth));
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:AuthLink"]));
 
-//var authConnectString = builder.Configuration["ConnectionStrings:AuthLink"];
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseNpgsql(authConnectString));
-
-//builder.Services.AddDbContext<ebdbContext>(options =>
-//    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ebdbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-//var AuthconnectionString = builder.Configuration.GetConnectionString("AuthConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseNpgsql(AuthconnectionString));
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//     .AddEntityFrameworkStores<ApplicationDbContext>();
-
+// configure cookie settings
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
@@ -44,29 +27,19 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
-//services.Configure<CookiePolicyOptions>(options =>
-//{
-//    // This lambda determines whether user consent for non-essential
-//    // cookies is needed for a given request.
-//    options.CheckConsentNeeded = context => true;
-//    // requires using Microsoft.AspNetCore.Http;
-//    options.MinimumSameSitePolicy = SameSiteMode.None;
-//    options.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
-//});
-//builder.Services.AddHsts(options =>
-//{
-//    options.IncludeSubDomains = true;
-//    options.MaxAge = TimeSpan.FromDays(365);
-//});
 
 builder.Services.AddControllersWithViews();
 
+
+// allows the addition of .NET Identity and enables roles
 builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IebdbContextRepository, EFebdbContextRepository>();
 
+
+// change password requirements to be better
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = false;
@@ -79,23 +52,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz_@.1234567890";
 });
 
-//rename denied and authenticated routes
-// builder.Services.Configure<CookieAuthenticationOptions>(
-//        IdentityConstants.ApplicationScheme,
-//     options => {
-//         options.LoginPath = "/Authenticate";
-//         options.AccessDeniedPath = "/NotAllowed";
-//     });
 
-
-//require users to be authenticated
-// builder.Services.AddAuthorization(options =>
-// {
-//     options.FallbackPolicy = new AuthorizationPolicyBuilder()
-//         .RequireAuthenticatedUser()
-//         .Build();
-// });
-
+// tells our app where the model is
 builder.Services.AddCors();
 builder.Services.AddSingleton(
       new InferenceSession(Path.Combine(env.ContentRootPath, "wwwroot", "model.onnx")));
@@ -110,13 +68,12 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+// enables hsts above, and redirects to https below
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseCookiePolicy();
 
@@ -128,6 +85,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+
+// csp header configuration
 app.Use(async (context, next) =>
     {
         context.Response.Headers.Add("X-Xss-Protection", "1");

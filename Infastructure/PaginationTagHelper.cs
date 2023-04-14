@@ -58,9 +58,6 @@ namespace intexii.Infrastructure
                     tb.InnerHtml.Append("...");
                 }
 
-                //tb.AddCssClass(PageClass);
-                //tb.InnerHtml.Append(i.ToString());
-
                 final.InnerHtml.AppendHtml(tb);
             }
 
