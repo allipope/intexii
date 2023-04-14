@@ -9,15 +9,19 @@
 
 
 <div class="container text-center">
-    <h2>Your Analysis Record has been saved if you added one</h2>
-    <h3>Would you like to attach a new decoration to this textile?</h3>
+    <h2>Analysis record successfully attached if added</h2>
+</div>
     <form style="margin:30px">
-        <label>Textile Record:</label>
-        <input readonly value="@ViewBag.Values.Tid" />
-        <label>Color Record:</label>
-        <input readonly value="@ViewBag.Values.Did" />
+        <div class="form-group">
+            <label>Textile Record:</label>
+            <input readonly value="@ViewBag.Values.Tid" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Decoration Record:</label>
+            <input readonly value="@ViewBag.Values.Did" class="form-control"/>
+        </div>
     </form>
-
+<div class="text-center">
     <form method="post" style="margin:30px">
         <div class="form-group">
             <input asp-for="MainTextileid" value="@ViewBag.Values.Tid" hidden />
@@ -26,8 +30,7 @@
             <input asp-for="MainDecorationid" value="@ViewBag.Values.Did" hidden />
         </div>
         <button class="btn btn-primary" type="submit">Attach New Decoration</button>
-        <button class="btn btn-danger" type="submit">Don't Add</button>
+        <button class="btn btn-danger" type="submit">Skip</button>
     </form>
     <br />
-
 </div>

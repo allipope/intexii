@@ -7,14 +7,19 @@
 @model BurialmainTextile
 
 <div class="container text-center">
-    <h2>Your Body Analysis Record has been attached</h2>
-    <h6>Would you like to add a textile to this burial?</h6>
+    <h2>Body analysis record successfully attached</h2>
+</div>
     <form style="margin:30px">
-        <label>Burial Record:</label>
-        <input readonly value="@ViewBag.Values.Bid" />
-        <label>Textile Record:</label>
-        <input readonly value="@ViewBag.Values.Tid" />
+        <div class="form-group">
+            <label>Burial Record:</label>
+            <input readonly value="@ViewBag.Values.Bid" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Textile Record:</label>
+            <input readonly value="@ViewBag.Values.Tid" class="form-control" />
+        </div>
     </form>
+<div class="text-center">
     <form method="post" style="margin:30px">
         <div class="form-group">
             <input asp-for="MainBurialmainid" value="@ViewBag.Values.Bid" hidden />
@@ -23,7 +28,7 @@
             <input asp-for="MainTextileid" value="@ViewBag.Values.Tid" hidden />
         </div>
         <button class="btn btn-primary" type="submit">Attach Textile Record</button>
-        <button class="btn btn-danger" type="submit">No</button>
+        <button class="btn btn-danger" type="submit">Skip</button>
         <button class="btn btn-success" asp-controller="Home" asp-action="Index">Return Home</button>
     </form>
     @*<a class="btn btn-success" asp-controller="Home" asp-action="Index">Return Home</a>*@

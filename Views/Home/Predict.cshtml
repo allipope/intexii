@@ -2,57 +2,118 @@
     ViewData["Title"] = "Make a Prediction";
 }
 
-<h1 class="text-center">Predict the Wrapping type of a mummy:</h1>
+@*PREDICT PAGE VIEW*@
+<h1 class="text-center">Predict Mummy Wrapping Type:</h1>
 <br />
-<div class="text-center border-2 p-2">
+<div>
     <form id="myForm">
-        <label for="sqns">Square North South:</label>
-        <input type="number" id="sqns" name="sqns" step="1"><br><br>
-
-        <label for="depth">Depth:</label>
-        <input type="number" id="depth" name="depth" step="0.1"><br><br>
-
-        <label for="sth">South To Head:</label>
-        <input type="number" id="sth" name="sth" step="0.1"><br><br>
-
-        <label for="sqew">Square East West:</label>
-        <input type="number" id="sqew" name="sqew" step="0.1"><br><br>
-
-        <label for="wth">West To Head:</label>
-        <input type="number" id="wth" name="wth" step="0.1"><br><br>
-
-        <label for="wtf">West To Feet:</label>
-        <input type="number" id="wtf" name="wtf" step="0.1"><br><br>
-
-        <label for="stf">South To Feet:</label>
-        <input type="number" id="stf" name="stf" step="0.1"><br><br>
-
-        <label for="ew">East/West:</label>
+        @*<div class="form-group">
+            <label for="sqns">Square North South:</label>
+            <input type="number" id="sqns" name="sqns" step="1"><br><br>
+        </div>*@
+        <div class="form-group">
+            <label for="sqns">Square North South:</label>
+            <input type="number" class="form-control" id="sqns" step="1" placeholder="Enter a Number">
+        </div>
+        <div class="form-group">
+            <label for="depth">Depth:</label>
+            <input type="number" class="form-control" name="depth" id="depth" step="0.1" placeholder="Enter a the Burial Depth">
+        </div>
+        @*<div class="form-group">
+            <label for="depth">Depth:</label>
+            <input type="number" id="depth" name="depth" step="0.1"><br><br>
+        </div>*@
+        <div class="form-group">
+            <label for="sth">South To Head:</label>
+            <input type="number" class="form-control" name="sth" id="sth" step="0.1" placeholder="Enter a Number">
+        </div>
+        @*<div class="form-group">
+            <label for="sth">South To Head:</label>
+            <input type="number" id="sth" name="sth" step="0.1"><br><br>
+        </div>*@
+        <div class="form-group">
+            <label for="sqew">Square East West:</label>
+            <input type="number" class="form-control" name="sqew" id="sqew" step="0.1" placeholder="Enter a Number">
+        </div>
+        @*<label for="sqew">Square East West:</label>
+        <input type="number" id="sqew" name="sqew" step="0.1"><br><br>*@
+        <div class="form-group">
+            <label for="wth">West To Head:</label>
+            <input type="number" class="form-control" name="wth" id="wth" step="0.1" placeholder="Enter a Number">
+        </div>
+        @*<label for="wth">West To Head:</label>
+        <input type="number" id="wth" name="wth" step="0.1"><br><br>*@
+        <div class="form-group">
+            <label for="wth">West To Feet:</label>
+            <input type="number" class="form-control" name="wtf" id="wtf" step="0.1" placeholder="Enter a Number">
+        </div>
+        @*<label for="wtf">West To Feet:</label>
+        <input type="number" id="wtf" name="wtf" step="0.1"><br><br>*@
+        <div class="form-group">
+            <label for="stf">South To Feet:</label>
+            <input type="number" class="form-control" name="stf" id="stf" step="0.1" placeholder="Enter a Number">
+        </div>
+        @*<label for="stf">South To Feet:</label>
+        <input type="number" id="stf" name="stf" step="0.1"><br><br>*@
+        <div class="form-group">
+            <label for="ew">East/West</label>
+            <select class="form-control" id="ew" name="ew">
+                <option value="">Select an Option</option>
+                <option value="E">East</option>
+                <option value="W">West</option>
+            </select>
+        </div>
+        @*<label for="ew">East/West:</label>
         <select id="ew" name="ew">
             <option value="">--Select an option--</option>
             <option value="E">East</option>
             <option value="W">West</option>
         </select>
-        <br><br>
-
-        <label for="asa">Adult Sub Adult:</label>
+        <br><br>*@
+        <div class="form-group">
+            <label for="asa">Adult Sub Adult</label>
+            <select class="form-control" id="asa" name="asa">
+                <option value="">Select an Option</option>
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="O">Other</option>
+            </select>
+        </div>
+        @*<label for="asa">Adult Sub Adult:</label>
         <select id="asa" name="asa">
             <option value="">--Select an option--</option>
             <option value="A">Adult</option>
             <option value="C">Child</option>
             <option value="O">Other</option>
         </select>
-        <br><br>
-
-        <label for="sc">Samples Collected:</label>
+        <br><br>*@
+        <div class="form-group">
+            <label for="sc">Adult Sub Adult</label>
+            <select class="form-control" id="sc" name="sc">
+                <option value="">Select an Option</option>
+                <option value="T">True</option>
+                <option value="F">False</option>
+            </select>
+        </div>
+        @*<label for="sc">Samples Collected:</label>
         <select id="sc" name="sc">
             <option value="">--Select an option--</option>
             <option value="T">True</option>
             <option value="F">False</option>
         </select>
-        <br><br>
-
-        <label for="area">Area:</label>
+        <br><br>*@
+        <div class="form-group">
+            <label for="area">Adult Sub Adult</label>
+            <select class="form-control" id="area" name="area">
+                <option value="">Select an Option</option>
+                <option value="NW">North West</option>
+                <option value="NE">North East</option>
+                <option value="SW">South East</option>
+                <option value="SE">South West</option>
+                <option value="O">Other</option>
+            </select>
+        </div>
+        @*<label for="area">Area:</label>
         <select id="area" name="area">
             <option value="">--Select an option--</option>
             <option value="NW">North West</option>
@@ -61,11 +122,42 @@
             <option value="SW">South West</option>
             <option value="O">Other</option>
         </select>
-        <br><br>
-
+        <br><br>*@
+        <br/>
         <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
     </form>
 </div>
+
+@*<form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Example multiple select</label>
+        <select multiple class="form-control" id="exampleFormControlSelect2">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+</form>*@
 
 
 <script>
@@ -257,12 +349,9 @@
             console.error(error);
         }
     }
-
-
-
 </script>
 
-
 <div class="text-center">
-    <h1 id="response"></h1>
+    <h2>Wrapping Type: <a id="response" style="font-size:inherit"></a></h2>
+    <h id="response"></h>
 </div>
