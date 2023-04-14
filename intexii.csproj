@@ -7,6 +7,10 @@
     <UserSecretsId>aspnet-intexii-5d572303-3e1b-45fe-9a07-d1e81ee21190</UserSecretsId>
   </PropertyGroup>
 
+    <ItemGroup>
+		<None Include="wwwroot\model.onnx" />
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />

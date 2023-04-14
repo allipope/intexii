@@ -87,13 +87,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 // });
 
 builder.Services.AddCors();
-//builder.Services.AddSingleton<InferenceSession>(
-//    new InferenceSession("Data/model.onnx")
-//);
-
 builder.Services.AddSingleton(
-      new InferenceSession(Path.Combine(env.ContentRootPath, "Data", "model.onnx"))
-        );
+      new InferenceSession(Path.Combine(env.ContentRootPath, "wwwroot", "model.onnx")));
 
 var app = builder.Build();
 
