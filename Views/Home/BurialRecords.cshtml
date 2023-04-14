@@ -4,93 +4,109 @@
 
 @model BurialViewModel
 
-
-<h1>Filter By: </h1>
+<div class="text-center">
+    <h1>Burial Records</h1>
+</div>
+<h3>Filter</h3>
 <form method="post" asp-controller="Home" asp-action="BurialRecords">
-    <label>Sex:</label>
-    <select name="Sex">
-        <option>Select</option>
-        <option value="M">Male</option>
-        <option value="F">Female</option>
-    </select>
+    <div class="form-group">
+        <label>Sex:</label>
+        <select name="Sex" class="form-control">
+            <option>Select</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Depth:</label>
+        <input type="text" name="Depth" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Textile Color:</label>
+        <input type="text" name="Color" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Textile Structure:</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Head Direction:</label>
+        <select name="Headdirection" class="form-control">
+            <option>Select</option>
+            <option value="W">West</option>
+            <option value="E">East</option>
+            <option value="N">North</option>
+            <option value="S">South</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Age at Death:</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Hair Color:</label>
+        <input type="text" name="Haircolor" class="form-control" />
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success">Filter</button>
     <br />
-    <label for="Depth">Depth:</label>
-    <input type="text" id="Depth" name="Depth" />
-    <br />
-    <label>Textile Color:</label>
-    <input type="text" id="Color" name="Color" />
-    <br />
-    <label>Textile Structure:</label>
-    <input type="text" id="Structure" name="Structure" />
-    <br />
-    <label>Head Direction:</label>
-    <input type="text" id="Headdirection" name="Headdirection" />
-    <br />
-    <label>Age at Death:</label>
-    <input type="text" id="Ageatdeath" name="Ageatdeath" />
-    <br />
-    <label>Hair Color:</label>
-    <input type="text" id="Haircolor" name="Haircolor" />
-    <br />
-    <label>Estimate Structure:</label>
-    <input type="text" id="Estimatestructure" name="Estimatestructure" />
-    <br />
-
-
-    <button type="submit" class="border border-primary btn-success btn-sm">Go</button>
 </form>
 
 <!--services section start -->
 @foreach (var b in Model.BurialViews)
 {
-        <div class="card card-outline-primary m-1 p-1">
-            <div class="bg-faded p-1">
-                <h4>Location: @b.Locale</h4>
-            </div>
-            <div class="card-text p-1">Depth: @b.Depth m</div>
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>Location: @b.Locale</h4>
+        </div>
+        <div class="card-text p-1">Depth: @b.Depth m</div>
         @if (b.Sex == "")
         {
-                <div class="card-text p-1">Sex: N/A</div>
+            <div class="card-text p-1">Sex: N/A</div>
         }
         else
         {
-                <div class="card-text p-1">Sex: @b.Sex</div>
+            <div class="card-text p-1">Sex: @b.Sex</div>
         }
         @if (b.TextileDescription == null)
         {
-                <div class="card-text p-1">Description: N/A</div>
+            <div class="card-text p-1">Description: N/A</div>
         }
         else
         {
-                <div class="card-text p-1">Description: @b.TextileDescription</div>
+            <div class="card-text p-1">Description: @b.TextileDescription</div>
         }
         @if (b.Color == null)
         {
-                    <div class="card-text p-1">Textile Color: N/A</div>
+            <div class="card-text p-1">Textile Color: N/A</div>
         }
         else
         {
-                    <div class="card-text p-1">Textile Color: @b.Color</div>
+            <div class="card-text p-1">Textile Color: @b.Color</div>
         }
         @if (b.Structure == null)
         {
-                    <div class="card-text p-1">Textile Structure: N/A</div>
+            <div class="card-text p-1">Textile Structure: N/A</div>
         }
         else
         {
-                    <div class="card-text p-1">Textile Structure: @b.Structure</div>
+            <div class="card-text p-1">Textile Structure: @b.Structure</div>
         }
 
 
 
-           <form method="post" asp-controller="Home" asp-action="ViewMore">
-                <input type="hidden" name="Id" value=@b.Id  id="Id"/>
-                <span class="card-text">
-                    <button type="submit" class="border border-primary btn-success btn-sm float-end">View More</button>
-                </span>
-            </form>
+        <form method="post" asp-controller="Home" asp-action="ViewMore">
+            <input type="hidden" name="Id" value=@b.Id id="Id" />
+            <span class="card-text">
+                <button type="submit" class="border border-primary btn-success btn-sm float-end">View Details</button>
+            </span>
+        </form>
 
-        </div>
+    </div>
 }
 
 <div page-blah="@Model.PageInfo" page-action="BurialRecords"></div>
+@*<div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>*@

@@ -24,20 +24,15 @@ namespace intexii.Controllers
 
         private IebdbContextRepository repo;
 
-
-        public IActionResult BurialRecords(string Sex = null, string Depth = null, int pageNum = 1)
+        //query the database for filtering
+        public IActionResult BurialRecords(string Sex, string Depth, string Color, string Headdirection, int pageNum = 1)
         {
             int pageSize = 10;
-            if (Sex != null)
+            if (Sex != null || Depth != null || Color != null || Headdirection != null)
             {
 
                 var x = new BurialViewModel
                 {
-                    Burialmains = repo.Burialmains
-                    .OrderBy(b => b.Area)
-                    .Skip((pageNum - 1) * pageSize)
-                    .Take(pageSize),
-
                     BurialViews = (from t in repo.Textiles
                                    join bmt in repo.BurialmainTextiles
                                    on t.Id equals bmt.MainTextileid
@@ -45,17 +40,31 @@ namespace intexii.Controllers
                                    on bmt.MainBurialmainid equals bm.Id
                                    join ct in repo.ColorTextiles
                                    on t.Id equals ct.MainTextileid into ctass
+
+
                                    from cta in ctass.DefaultIfEmpty()
                                    join c in repo.Colors
                                    on cta.MainColorid equals c.Id into biga
+
+
                                    from ba in biga.DefaultIfEmpty()
                                    join st in repo.StructureTextiles
                                    on t.Id equals st.MainTextileid into stass
+
+
                                    from sta in stass.DefaultIfEmpty()
                                    join s in repo.Structures
                                    on sta.MainStructureid equals s.Id into bigb
+
                                    from bb in bigb.DefaultIfEmpty()
-                                   where bm.Sex == Sex
+                                   where
+                                   (bm.Sex == Sex) || (Sex == null) &&
+                                   (bm.Depth == Depth) || (Depth == null) &&
+                                   (ba.Value == Color) || (Color == null) &&
+                                   (bm.Headdirection == Headdirection) || (Headdirection == null)
+
+
+
                                    select new BurialPageModel
                                    {
                                        Id = bm.Id,
@@ -68,9 +77,13 @@ namespace intexii.Controllers
                                        Color = ba.Value,
                                        Structure = bb.Value,
                                        TextileDescription = t.Description,
-                                       Ageatdeath = bm.Ageatdeath
+                                       Ageatdeath = bm.Ageatdeath,
+                                       Headdirection = bm.Headdirection,
+                                       Haircolor = bm.Haircolor
 
                                    })
+                                    .Skip((pageNum - 1) * pageSize)
+                                    .Take(pageSize)
                                 .ToList(),
 
                     PageInfo = new PageInfo
@@ -81,61 +94,7 @@ namespace intexii.Controllers
                     }
                 };
 
-                return View(x);
-            }
 
-
-            else if (Depth != null)
-            {
-
-                var x = new BurialViewModel
-                {
-                    Burialmains = repo.Burialmains
-                    .OrderBy(b => b.Area)
-                    .Skip((pageNum - 1) * pageSize)
-                    .Take(pageSize),
-
-                    BurialViews = (from t in repo.Textiles
-                                   join bmt in repo.BurialmainTextiles
-                                   on t.Id equals bmt.MainTextileid
-                                   join bm in repo.Burialmains
-                                   on bmt.MainBurialmainid equals bm.Id
-                                   join ct in repo.ColorTextiles
-                                   on t.Id equals ct.MainTextileid into ctass
-                                   from cta in ctass.DefaultIfEmpty()
-                                   join c in repo.Colors
-                                   on cta.MainColorid equals c.Id into biga
-                                   from ba in biga.DefaultIfEmpty()
-                                   join st in repo.StructureTextiles
-                                   on t.Id equals st.MainTextileid into stass
-                                   from sta in stass.DefaultIfEmpty()
-                                   join s in repo.Structures
-                                   on sta.MainStructureid equals s.Id into bigb
-                                   from bb in bigb.DefaultIfEmpty()
-                                   where bm.Depth == Depth
-                                   select new BurialPageModel
-                                   {
-                                       Id = bm.Id,
-                                       Dateofexcavation = bm.Dateofexcavation,
-                                       Squarenorthsouth = bm.Squarenorthsouth,
-                                       Squareeastwest = bm.Squareeastwest,
-                                       Depth = bm.Depth,
-                                       Sex = bm.Sex,
-                                       Locale = t.Locale,
-                                       Color = ba.Value,
-                                       Structure = bb.Value,
-                                       TextileDescription = t.Description,
-                                       Ageatdeath = bm.Ageatdeath
-                                   })
-                                .ToList(),
-
-                    PageInfo = new PageInfo
-                    {
-                        TotalNumProjects = repo.Burialmains.Count(),
-                        ProjectsPerPage = pageSize,
-                        CurrentPage = pageNum
-                    }
-                };
 
                 return View(x);
             }
@@ -145,10 +104,6 @@ namespace intexii.Controllers
 
                 var x = new BurialViewModel
                 {
-                    Burialmains = repo.Burialmains
-                    .OrderBy(b => b.Area)
-                    .Skip((pageNum - 1) * pageSize)
-                    .Take(pageSize),
 
                     BurialViews = (from t in repo.Textiles
                                    join bmt in repo.BurialmainTextiles
@@ -182,6 +137,8 @@ namespace intexii.Controllers
                                        TextileDescription = t.Description,
                                        Ageatdeath = bm.Ageatdeath
                                    })
+                                    .Skip((pageNum - 1) * pageSize)
+                                    .Take(pageSize)
                                 .ToList(),
 
                     PageInfo = new PageInfo
@@ -200,7 +157,7 @@ namespace intexii.Controllers
 
 
 
-
+        //continuing to filter
         public IActionResult ViewMore(long Id)
         {
             var y = new BurialViewModel
@@ -264,7 +221,7 @@ namespace intexii.Controllers
         }
 
 
-
+        //authorize only admins to enter the page
         [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
@@ -278,6 +235,11 @@ namespace intexii.Controllers
         }
 
         public IActionResult Predict()
+        {
+            return View();
+        }
+
+        public IActionResult Unsupervised()
         {
             return View();
         }

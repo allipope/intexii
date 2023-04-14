@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/bootstrap.min.css.map" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/intexii.styles.css" asp-append-version="true" />
+    <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -26,17 +27,23 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Predict">Predict</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BurialRecords">Burial Records</a>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddRecord">Add Record</a>
                         </li>
-
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Prediction Models
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Predict">Supervised</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="Home" asp-action="Unsupervised">Unsupervised</a>
+                            </div>
+                        </li>
                     </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+                <partial name="_LoginPartial" />
+            </div>
             </div>
         </nav>
     </header>
